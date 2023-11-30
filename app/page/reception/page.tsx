@@ -3,11 +3,13 @@
 
 import SelectTrans from "@/components/SelectTrans";
 
+
 const Page = () => {
+  
 
   return (
     <div className="w-full h-auto m-auto flex container justify-center items-center">
-      <SelectTrans/>
+      <SelectTrans />
     </div>
   );
 };

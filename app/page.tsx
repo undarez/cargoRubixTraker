@@ -3,23 +3,30 @@
 import React from 'react';
 import DatePiker from '@/components/DatePiker';
 import { getAuthSession } from '@/lib/auth';
-// import { useRouter } from 'next/navigation'; // Assurez-vous que cette ligne est présente
+import { useRouter } from 'next/navigation'; 
 
 const Page = async () => {
+  
   const session = await getAuthSession();
-  // const router = useRouter();
-  // const [selectedDate, setSelectedDate] = useState<Date | undefined>();
 
-  // const handleDateSelect = (date: Date) => {
-  //   setSelectedDate(date);
-  //   const formattedDate = date.toString().split('T')[0];
-  //   router.push(`/page/reception?selectedDate=${formattedDate}`);
-  // };
+  // Vérifier si l'utilisateur est connecté avant d'afficher le DatePiker
+  if (!session?.user) {
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    // router.push('/');
+    return (
+      <div>
+        <h1>
+          Bienvenue veuillez-vous connecter pour avoir acces au calendrier
+
+        </h1>
+      </div>
+    ); 
+  }
 
   return (
     <div className='mt-20'>
       <h1>
-        hello cest mon titre
+        Hello, cest mon titre
       </h1>
       <DatePiker />
     </div>

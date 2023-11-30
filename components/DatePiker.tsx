@@ -1,6 +1,7 @@
 // DatePiker.tsx
 "use client"
 import React, { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Calendar } from './ui/calendar';
 import { CalendarRange, CalendarRangeIcon } from 'lucide-react';
@@ -16,10 +17,13 @@ const DatePiker: React.FC<DatePikerProps> = ({ onSelectDate = () => {} }) => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const router = useRouter(); // Utilisez useRouter ici
 
+
+
+
   useEffect(() => {
     if (selectedDate) {
       onSelectDate(selectedDate);
-      const formattedDate = selectedDate.toString().split('T')[0];
+      const formattedDate = format(selectedDate, 'yyyy-MM-dd');
       router.push(`/page/reception?selectedDate=${formattedDate}`);
     }
   }, [selectedDate, onSelectDate, router]);
